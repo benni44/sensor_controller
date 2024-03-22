@@ -392,6 +392,7 @@ static void osalIndicateTaskAlert(void) {
   *     Unused
   */
 static void osalCtrlReadyIsr(uintptr_t arg) {
+    ARG_UNUSED(arg);
     osalDisableCtrlReadyInt();
     osalIndicateCtrlReady();
 } // osalCtrlReadyIsr
@@ -409,6 +410,7 @@ static void osalCtrlReadyIsr(uintptr_t arg) {
   *     Unused
   */
 static void osalTaskAlertIsr(uintptr_t arg) {
+    ARG_UNUSED(arg);
     scifOsalDisableTaskAlertInt();
     osalIndicateTaskAlert();
 } // osalTaskAlertIsr

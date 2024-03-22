@@ -41,9 +41,11 @@ After flashing the device, run the code:
 5. Device will demonstrate active, idle and standby modes.
 6. Device will then start the Sensor Controller task and put the main CPU
    to sleep.
-7. Press BTN-1 to wake up the main CPU.
+7. Press BTN-1 to wake up the Sensor Controller and start a ~5 second timer and
+   pulse counter on BTN-2.
 8. Press BTN-2 at least five times within five seconds.
-9. The device will print the number of button presses and shut down.
+9. The device will then wake up and print the number of button presses and also
+   output the number as pulses on the GPIO connected to the red LED.
 
 Sample Output
 =================
@@ -58,19 +60,25 @@ cc1352rl_launchxl output
         SCIF driver callback: Task control interface ready
         Shutting down external flash
 
-        Busy-wait 1 s
-        Sleep 4000 us (IDLE)
-        Sleep 1 s (STANDBY)
+        Busy-wait 500 ms
+        Sleep 3 ms (IDLE)
+        Sleep 500 ms (STANDBY)
 
         Starting Sensor Controller task and going to sleep
         Press button 1 to wake up and then button 2 at least 5 times.
 
         SCIF driver callback: Task control interface ready
-        Button press count: 6
+        Button press count: 7
         Shutting down
 
-Current as measured with EnergyTrace:
--------------------------------------
+Current as measured with an Qoitech Otii Arc:
+---------------------------------------------
 
-.. raw:: html
-   :file: img/sensor_controller_current.html
+.. image:: img/sensor_controller_current.png
+
+Zoomed in on the current during startup until the start of the Sensor Controller
+task:
+.. image:: img/sensor_controller_current_zoomed.png
+
+Zoomed in on the current during the Sensor Controller task:
+.. image:: img/sensor_controller_current_zoomed2.png
